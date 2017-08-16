@@ -1,2 +1,2 @@
-from .analyzer import read_spectra
+from .analyzer import read_channels
 from .file import gen_sptfile
