@@ -8,5 +8,5 @@ setup(
     license='MIT',
     author='Jacob Zimmerman (jczimm)',
     author_email='jczimm@jczimm.com',
-    description='Process-focused audio visualization toolkit'
+    description='Analyzer in verum visu Toolkit'
 )

@@ -1,4 +1,4 @@
-# verum visu Toolkit: Analyzer
+# verum visu Analyzer
 
 The **verum visu Audio Visualization Toolkit** is a response to the idea that an open-source community can develop rich audio visualizations if the software is split up into a clearly defined, accessible process.
 
