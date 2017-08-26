@@ -1,68 +1,35 @@
 # verum visu Analyzer
 
 <!--
-TODO: address simplenote
-TODO: move content
-move all the top content to verum-visu-toolkit/verum-visu parent repo
+TODO: move stuff
+1. move all the top content to verum-visu-toolkit/verum-visu parent repo
 and add submodules:
 
 verum-visu.git
-    submodule: analyzer.git
-    submodule: renderer.git
-    libs/
-        submodule: sptfile.git
-        submodule: frsfile.git
-        submodule: rndfile.git
+    submodule: analyzer.git; package: vvanalyzer
+    submodule: renderer.git; package: vvrenderer
+    submodule: sptfile.git; package: vvsptfile
+    submodule: frsfile.git; package: vvfrsfile
+    submodule: rndfile.git; package: vvrndfile
 
-in /verum-visu repo, also write more about the ideas of the project -
-the repo will pretty much be the project home page (in the OSS community)
-
-mention vvtoolkit-utils
+2. then move vvanalyzer/sptfile/ out to sptfile.git, package: vvsptfile
 
 TODO: create read_output_file
 reads file, whether it's SPT or JSON; determines formats and returns the
 parsed data in a dict
 
-TODO: publish to pypi
+TODO: publish:
+vvanalyzer, vvrenderer, vvsptfile, vvfrsfile, vvrndfile
+(the tools and Visualizer parts should reference the appropriate file formats
+directly)
 TODO: create a demo Transformer (not template yet) in python
 (as separate repos)
 the transformer should use the new vvanalyzer.read_output_file
+
+
+in /verum-visu repo, also write more about the ideas of the project -
+the repo will pretty much be the project home page (in the OSS community)
 -->
-
-The **verum visu Audio Visualization Toolkit** is a response to the idea
-that an open-source community can develop rich audio visualizations if
-the software is split up into a clearly defined, accessible process.
-
-The toolkit consists of three parts:
-
-1. *Spectral Analyzer*
-    analyzes audio for frequency data
-
-2. **Visualizer**
-
-3. *Video Renderer*\
-    creates a video file by the frames
-
-The *Spectral Analyzer* and *Video Renderer* are the only tools in the
-toolkit. The Visualizer will do the bulk of the work in any process.
-The tools (along with the [libraries](todo)), allow for the development
-of specialized Visualizer parts.
-
-### Visualizer
-The interpreter consists of two parts, and these are types of programs
-created by the Verum Visu community.
-
-1. **Interpreter**\
-    algorithms/neural networks create visualization data from the
-    frequency data as input
-
-2. **Director**\
-    maps the visualization data to properties of shapes for the renderer
-    to animate
-
-Everything is at an extremely early stage!
-
-## Using the Analyzer
 
 Install it via pip:
 
