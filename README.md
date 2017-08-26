@@ -1,10 +1,19 @@
 # verum visu Analyzer
 
-<!-- TODO:
+<!-- TODO: move content
 move all the top content to verum-visu-toolkit/verum-visu parent repo
 with the tool repos (/vvanalyzer, /renderer) and /libs repo as submodules
 in /verum-visu repo, also write more about the ideas of the project -
 the repo will pretty much be the project home page (in the OSS community)
+
+TODO: create read_output_file
+reads file, whether it's SPT or JSON; determines formats and returns the
+parsed data in a dict
+
+TODO: publish to pypi
+TODO: create a demo Transformer (not template yet) in python
+(as separate repos)
+the transformer should use the new vvanalyzer.read_output_file
 -->
 
 The **verum visu Audio Visualization Toolkit** is a response to the idea

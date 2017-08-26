@@ -23,7 +23,6 @@ from __future__ import print_function
 
 from docopt import docopt
 from schema import Schema, Or, And, Use
-from os.path import exists as path_exists
 import pkg_resources
 import itertools
 

@@ -12,6 +12,8 @@ import json
 # import matplotlib.colors as colors
 # import numpy as np
 
+# TODO: draw with a logarithmic y-scale
+
 
 def main():
     if len(argv) != 2:
@@ -35,17 +37,17 @@ def main():
     # plt.show()
 
     width = len(channel_left)
-    height = config['fft_numbins'] / 2
+    height = config['num_freqs']
     img = Image.new('RGB', (width, height))
     pix = img.load()
     for x in range(width):
         spectrum = channel_left[x]
         for y in range(height):
             pix[x, y] = ImageColor.getrgb('hsl({0},200%,200%)'.format(str(int(
-                spectrum[height - y] / 10. * 256
+                spectrum[height - y - 1] / 10. * 150
             ))))
 
-    img_resized = img.resize((width * 10, height))
+    img_resized = img.resize((900, height))
 
     img_resized.save(argv[1] + '_left.png', 'PNG')
 
