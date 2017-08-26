@@ -15,13 +15,15 @@ import json
 
 def main():
     if len(argv) != 2:
-        raise ValueError('Expected exactly 1 argument: spt_path; receieved %d' % (len(argv) - 1))
+        raise ValueError('Expected exactly 1 argument: spt_path; receieved '
+                         '{:d}'.format(len(argv) - 1))
 
     with open(argv[1]) as data_file:
         data = json.load(data_file)
 
     config = data['config']
-    # channel_left = zip(*[tuple(reversed(spectrum)) for spectrum in data['data']['channel0']])
+    # channel_left = zip(*[tuple(reversed(spectrum)) for spectrum in data[
+    # 'data']['channel0']])
     channel_left = data['data']['channel0']
 
     # dmn = 0.00001
@@ -36,10 +38,12 @@ def main():
     height = config['fft_numbins'] / 2
     img = Image.new('RGB', (width, height))
     pix = img.load()
-    for x in xrange(width):
+    for x in range(width):
         spectrum = channel_left[x]
-        for y in xrange(height):
-            pix[x, y] = ImageColor.getrgb('hsl(' + str(int(spectrum[height - y] / 10. * 256)) + ',200%,200%)')
+        for y in range(height):
+            pix[x, y] = ImageColor.getrgb('hsl({0},200%,200%)'.format(str(int(
+                spectrum[height - y] / 10. * 256
+            ))))
 
     img_resized = img.resize((width * 10, height))
 

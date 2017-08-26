@@ -4,3 +4,5 @@ olefile==0.44
 Pillow==4.2.1
 pycparser==2.18
 SoundFile==0.9.0.post1
+docopt
+schema

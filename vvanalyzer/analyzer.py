@@ -3,35 +3,53 @@
 no description
 """
 
+from . import utils
 import numpy as np
 
+pbar = None
 
-def read_channels(sample_channels, samplerate, readrate, fft_numbins=1024):
-    chunk_size = samplerate / readrate
+
+def read_channels(sample_channels, samplerate, speed, fft_numbins=1024):
+    global pbar
+    pbar = utils.pbar
+    pbar.start('Analyzing Channels', show_header=True)
+
+    chunk_size = int(samplerate / speed)
 
     # measure spectra for each channel
     data_channels = []
-    for sample_channel in sample_channels:
+    for channel_num, sample_channel in enumerate(sample_channels):
+
+        pbar.start('Channel {:d}'.format(channel_num))
 
         # measure the spectrum for each chunk of the samples in the channel
-        channel_spectra = read_spectra(sample_channel, chunk_size, fft_numbins)
-        if len(channel_spectra) is not 0:
-            data_channels.append(channel_spectra)
+        channel = read_spectra(sample_channel, chunk_size, fft_numbins)
+        if len(channel) > 0:
+            data_channels.append(channel)
+
+        pbar.end()
+
+    pbar.end(show_header=True)
 
     return data_channels
 
 
 def read_spectra(samples, chunk_size, fft_numbins):
     channel_spectra = []
-    for i in xrange(len(samples) / chunk_size + 1):
+    num_chunks = len(samples) / chunk_size + 1
+    for i in range(num_chunks):
 
         # get a chunk of the samples
         startpos = i * chunk_size
         current_samples = samples[startpos:startpos + chunk_size]
+
+        # measure the spectrum for the chunk
         spectrum = read_spectrum(current_samples, fft_numbins)
 
         if spectrum is not None:
             channel_spectra.append(spectrum)
+
+        pbar.set_progress(i, num_chunks - 1)
 
     return channel_spectra
 

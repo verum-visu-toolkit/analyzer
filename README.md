@@ -1,17 +1,66 @@
 # verum visu Analyzer
 
-The **verum visu Audio Visualization Toolkit** is a response to the idea that an open-source community can develop rich audio visualizations if the software is split up into a clearly defined, accessible process.
+<!-- TODO:
+move all the top content to verum-visu-toolkit/verum-visu parent repo
+with the tool repos (/vvanalyzer, /renderer) and /libs repo as submodules
+in /verum-visu repo, also write more about the ideas of the project -
+the repo will pretty much be the project home page (in the OSS community)
+-->
 
-The toolkit will consist of three tools:
+The **verum visu Audio Visualization Toolkit** is a response to the idea
+that an open-source community can develop rich audio visualizations if
+the software is split up into a clearly defined, accessible process.
 
-1. **Analyzer** *(this repo)*
-analyzes audio for frequency data
+The toolkit consists of three parts:
 
-2. **Processing**
-algorithms/neural networks create visualization data from the frequency data as input
+1. *Spectral Analyzer*
+    analyzes audio for frequency data
 
-3. **Renderer + Video Output**
-draw the visualization data in some way and creates a video file with the frames
+2. **Interpreter**
 
+3. *Video Renderer*\
+    creates a video file by the frames
+
+The *Spectral Analyzer* and *Video Renderer* are the only tools in the
+toolkit. The Interpreter will do the bulk of the work in any process.
+The tools (along with the [libraries](todo)) , allow for the development
+of specialized Interpreter parts.
+
+### Interpreter
+The interpreter consists of two parts, and these are types of programs
+created by the Verum Visu community.
+
+1. **Transformer**\
+    algorithms/neural networks create visualization data from the
+    frequency data as input
+
+2. **Renderer**\
+    draw the visualization data in some way - creates draw commands
 
 Everything is at an extremely early stage!
+
+## Using the Analyzer
+
+Install it via pip:
+
+```sh
+pip install vvanalyzer
+```
+
+then
+
+```sh
+[insert the docstring for vv-analyzer as the documentation of the tool]
+```
+
+## Parsing Analysis files
+
+You can parse the JSON yourself
+Or use `file.read_sptfile` if your Transformer is written in python.
+
+```py
+from analyzer import file
+with open('file.spt') as f:
+    spt_data = file.read_sptfile(f)
+    print(spt_data)
+```
