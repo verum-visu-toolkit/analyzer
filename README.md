@@ -1,10 +1,23 @@
 # verum visu Analyzer
 
-<!-- TODO: move content
+<!--
+TODO: address simplenote
+TODO: move content
 move all the top content to verum-visu-toolkit/verum-visu parent repo
-with the tool repos (/vvanalyzer, /renderer) and /libs repo as submodules
+and add submodules:
+
+verum-visu.git
+    submodule: analyzer.git
+    submodule: renderer.git
+    libs/
+        submodule: sptfile.git
+        submodule: frsfile.git
+        submodule: rndfile.git
+
 in /verum-visu repo, also write more about the ideas of the project -
 the repo will pretty much be the project home page (in the OSS community)
+
+mention vvtoolkit-utils
 
 TODO: create read_output_file
 reads file, whether it's SPT or JSON; determines formats and returns the
@@ -25,26 +38,27 @@ The toolkit consists of three parts:
 1. *Spectral Analyzer*
     analyzes audio for frequency data
 
-2. **Interpreter**
+2. **Visualizer**
 
 3. *Video Renderer*\
     creates a video file by the frames
 
 The *Spectral Analyzer* and *Video Renderer* are the only tools in the
-toolkit. The Interpreter will do the bulk of the work in any process.
-The tools (along with the [libraries](todo)) , allow for the development
-of specialized Interpreter parts.
+toolkit. The Visualizer will do the bulk of the work in any process.
+The tools (along with the [libraries](todo)), allow for the development
+of specialized Visualizer parts.
 
-### Interpreter
+### Visualizer
 The interpreter consists of two parts, and these are types of programs
 created by the Verum Visu community.
 
-1. **Transformer**\
+1. **Interpreter**\
     algorithms/neural networks create visualization data from the
     frequency data as input
 
-2. **Renderer**\
-    draw the visualization data in some way - creates draw commands
+2. **Director**\
+    maps the visualization data to properties of shapes for the renderer
+    to animate
 
 Everything is at an extremely early stage!
 
