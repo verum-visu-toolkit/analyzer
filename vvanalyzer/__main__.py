@@ -27,7 +27,7 @@ from schema import Schema, Or, And, Use
 import pkg_resources
 import itertools
 
-import analyzer, file, utils
+import analyzer, file
 import vvsptfile as sptfile
 from cli import ProgressBarController
 
@@ -62,7 +62,7 @@ def main():
                                         program_args['-n'],
                                         program_args['-o'])
 
-    pbar = utils.pbar = ProgressBarController()
+    pbar = ProgressBarController()
 
     for srcpath, speed_str, num_freqs, destpath in operations:
 

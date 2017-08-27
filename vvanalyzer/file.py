@@ -3,11 +3,12 @@
 no description
 """
 
-import utils
+from cli import ProgressBarController
 import vvsptfile as sptfile
 from soundfile import read
 import json
 
+pbar = ProgressBarController()
 
 # Reading Audio Files
 
@@ -40,8 +41,6 @@ def read_sptfile(opened_file):
 
 
 def gen_jsonfile(spectra_channels=None, config=None):
-    pbar = utils.pbar
-
     pbar.start('Generating JSON file', show_header=True)
 
     file_data = sptfile.create_spt(spectra_channels=spectra_channels,

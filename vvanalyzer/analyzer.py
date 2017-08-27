@@ -3,15 +3,13 @@
 no description
 """
 
-from . import utils
+from cli import ProgressBarController
 import numpy as np
 
-pbar = None
+pbar = ProgressBarController()
 
 
 def read_channels(sample_channels, samplerate, speed, fft_numbins=1024):
-    global pbar
-    pbar = utils.pbar
     pbar.start('Analyzing Channels', show_header=True)
 
     chunk_size = int(samplerate / speed)

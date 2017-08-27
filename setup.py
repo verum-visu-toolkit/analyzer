@@ -12,7 +12,7 @@ setup(
     install_requires=[
         'numpy==1.13.1',
         'SoundFile==0.9.0.post1',
-        'vvsptfile==0.0.1'
+        'vvsptfile'
     ],
     entry_points={
         'console_scripts': ['vv-analyzer = vvanalyzer.__main__:main']
