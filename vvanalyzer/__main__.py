@@ -28,7 +28,6 @@ import pkg_resources
 import itertools
 
 import analyzer, file
-import vvsptfile as sptfile
 from cli import ProgressBarController
 
 
