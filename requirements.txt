@@ -6,3 +6,4 @@ pycparser==2.18
 SoundFile==0.9.0.post1
 docopt
 schema
+vvsptfile

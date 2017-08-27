@@ -3,8 +3,8 @@
 no description
 """
 
-from vvanalyzer import utils
-import sptfile
+import utils
+import vvsptfile as sptfile
 from soundfile import read
 import json
 
@@ -39,10 +39,10 @@ def read_sptfile(opened_file):
 # Writing JSON
 
 
-def gen_jsonfile(spectra_channels=None, config=None, pbar_controller=None):
+def gen_jsonfile(spectra_channels=None, config=None):
     pbar = utils.pbar
 
-    pbar.start('Generating a JSON file', show_header=True)
+    pbar.start('Generating JSON file', show_header=True)
 
     file_data = sptfile.create_spt(spectra_channels=spectra_channels,
                                    config=config)

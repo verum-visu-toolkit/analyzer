@@ -9,19 +9,18 @@ from __future__ import print_function
 
 class ProgressBarController:
     """Display CLI progress bars"""
-    def __init__(self, disabled=False):
+    def __init__(self):
         self.names = []
-        self.disabled = disabled
 
     def start(self, name, show_header=False):
         self.names.append(name)
         if show_header:
-            self.__print(self.prefix + name)
+            print(self.prefix + name)
 
     def end(self, show_header=False):
         if show_header:
             # name = self.names[-1] if len(self.names) else ''
-            self.__print(self.prefix + '> Finished')
+            print(self.prefix + '> Finished')
         self.names.pop()
 
     def set_progress(self, iteration, last_iteration):
@@ -57,12 +56,9 @@ class ProgressBarController:
             100 * (iteration / float(last_iteration)))
         filled_length = int(length * iteration // last_iteration)
         bar = fill * filled_length + '-' * (length - filled_length)
-        self.__print('\r%s |%s| %s%% %s' % (prefix, bar, percent, suffix),
+        print('\r%s |%s| %s%% %s' % (prefix, bar, percent, suffix),
                      end='\r')
         # Print New Lines on Complete
         if iteration == last_iteration:
-            self.__print()
+            print()
 
-    def __print(self, *args, **kwargs):
-        if not self.disabled:
-            print(*args, **kwargs)

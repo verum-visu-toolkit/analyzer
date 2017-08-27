@@ -1,18 +1,12 @@
 # verum visu Analyzer
 
 <!--
-TODO: move stuff
-1. move all the top content to verum-visu-toolkit/verum-visu parent repo
-and add submodules:
-
 verum-visu.git
     submodule: analyzer.git; package: vvanalyzer
     submodule: renderer.git; package: vvrenderer
     submodule: sptfile.git; package: vvsptfile
     submodule: frsfile.git; package: vvfrsfile
     submodule: rndfile.git; package: vvrndfile
-
-2. then move vvanalyzer/sptfile/ out to sptfile.git, package: vvsptfile
 
 TODO: create read_output_file
 reads file, whether it's SPT or JSON; determines formats and returns the

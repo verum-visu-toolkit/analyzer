@@ -21,12 +21,14 @@ INPUT is a path to a .wav file. (other file formats coming soon!)
 """
 from __future__ import print_function
 
+import sys, os
 from docopt import docopt
 from schema import Schema, Or, And, Use
 import pkg_resources
 import itertools
 
-from vvanalyzer import analyzer, file, utils
+import analyzer, file, utils
+import vvsptfile as sptfile
 from cli import ProgressBarController
 
 
@@ -45,7 +47,8 @@ def validate_args(args):
     except ValueError as err:
         exit(err)
 
-if __name__ == '__main__':
+
+def main():
 
     version = pkg_resources.require('vvanalyzer')[0]
     input_args = docopt(__doc__, version=version)
@@ -59,7 +62,7 @@ if __name__ == '__main__':
                                         program_args['-n'],
                                         program_args['-o'])
 
-    pbar = utils.pbar = ProgressBarController(disabled=True)
+    pbar = utils.pbar = ProgressBarController()
 
     for srcpath, speed_str, num_freqs, destpath in operations:
 
@@ -68,12 +71,10 @@ if __name__ == '__main__':
         config_fft_numbins = (num_freqs - 1) * 2 or 1
 
         if destpath:
-            pbar.disabled = False
-
             with open(destpath, 'w') as f:  # Test if dest path is writeable
                 pass
         else:
-            pbar.disabled = True
+            sys.stdout = open(os.devnull, 'w')
 
         pbar.start('Reading ' + srcpath, show_header=True)
         channels, samplerate = file.read_wavfile(srcpath)
@@ -110,4 +111,8 @@ if __name__ == '__main__':
 
             pbar.end(show_header=True)
         else:
+            sys.stdout = sys.__stdout__
             print(spt_file)
+
+if __name__ == '__main__':
+    main()

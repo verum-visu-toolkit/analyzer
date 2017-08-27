@@ -3,5 +3,6 @@ utils = _Utils()
 
 from .analyzer import read_channels
 from .file import gen_sptfile, read_sptfile, gen_jsonfile
-import sptfile
+
+from .cli import ProgressBarController
 
