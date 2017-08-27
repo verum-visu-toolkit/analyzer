@@ -1,26 +1,5 @@
 # verum visu Analyzer
 
-<!--
-verum-visu.git
-    submodule: analyzer.git; package: vvanalyzer
-    submodule: renderer.git; package: vvrenderer
-    submodule: sptfile.git; package: vvsptfile
-    submodule: frsfile.git; package: vvfrsfile
-    submodule: rndfile.git; package: vvrndfile
-
-TODO: publish:
-vvanalyzer, vvrenderer, vvsptfile, vvfrsfile, vvrndfile
-(the tools and Visualizer parts should reference the appropriate file formats
-directly)
-TODO: create a demo Transformer (not template yet) in python
-(as separate repos)
-the transformer should use the new vvanalyzer.read_output_file
-
-
-in /verum-visu repo, also write more about the ideas of the project -
-the repo will pretty much be the project home page (in the OSS community)
--->
-
 ```sh
 $ pip install vvanalyzer
 $ vv-analyzer --help
