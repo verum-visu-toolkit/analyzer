@@ -8,10 +8,6 @@ verum-visu.git
     submodule: frsfile.git; package: vvfrsfile
     submodule: rndfile.git; package: vvrndfile
 
-TODO: create read_output_file
-reads file, whether it's SPT or JSON; determines formats and returns the
-parsed data in a dict
-
 TODO: publish:
 vvanalyzer, vvrenderer, vvsptfile, vvfrsfile, vvrndfile
 (the tools and Visualizer parts should reference the appropriate file formats
@@ -25,26 +21,51 @@ in /verum-visu repo, also write more about the ideas of the project -
 the repo will pretty much be the project home page (in the OSS community)
 -->
 
-Install it via pip:
-
 ```sh
-pip install vvanalyzer
-```
+$ pip install vvanalyzer
+$ vv-analyzer --help
+Verum Visu Toolkit: Analyzer.
 
-then
+Usage:
+  vv-analyzer [--json] ([-s <speed>] [-n <num_freqs>] [-o FILE] INPUT)...
+  vv-analyzer --version
+  vv-analyzer (-h | --help)
 
-```sh
-[insert the docstring for vv-analyzer as the documentation of the tool]
+Options:
+  -h --help         Show this screen.
+  --version         Show version.
+  -s <speed>        Number of spectra the analyzer should generate for each
+                      second [default: 10].
+  -n <num_freqs>    Number of frequency bins [default: 513].
+  -o FILE           File destination for output. If not provided, output will
+                      be written to stdout.
+  --json            Generate JSON files instead of SPT binary files.
+
+INPUT is a path to a .wav file. (other file formats coming soon!)
 ```
 
 ## Parsing Analysis files
 
-You can parse the JSON yourself
-Or use `file.read_sptfile` if your Transformer is written in python.
+The Interpreter in your stack should read files outputted by this
+application to interpret them in some meaningful way.
+
+Use `file.read_output_file`:
 
 ```py
 from analyzer import file
-with open('file.spt') as f:
-    spt_data = file.read_sptfile(f)
+with open('file.spt', 'rb') as f:
+    spt_data = file.read_output_file(f)
     print(spt_data)
+```
+
+See the [verum visu project repo](https://github.com/verum-visu-toolkit/verum-visu)
+and the [interpreter-example](https://github.com/verum-visu-toolkit/interpreter-example)
+for more information about how the Interpreter connects to the Analyzer.
+
+## Development
+
+Install it locally with pip:
+
+```sh
+pip install -e .
 ```
