@@ -27,9 +27,11 @@ def read_channels(sample_channels, samplerate, speed, fft_numbins=1024):
 
         pbar.end()
 
+    peak = max([np.amax(channel) for channel in data_channels])
+
     pbar.end(show_header=True)
 
-    return data_channels
+    return data_channels, peak
 
 
 def read_spectra(samples, chunk_size, fft_numbins):

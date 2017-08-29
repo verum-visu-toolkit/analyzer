@@ -16,7 +16,7 @@ Options:
                       be written to stdout.
   --json            Generate JSON files instead of SPT binary files.
 
-INPUT is a path to a .wav file. (other file formats coming soon!)
+INPUT is a path to an audio file (format can be anything ffmpeg supports).
 
 """
 from __future__ import print_function
@@ -76,11 +76,11 @@ def main():
             sys.stdout = open(os.devnull, 'w')
 
         pbar.start('Reading ' + srcpath, show_header=True)
-        channels, samplerate = file.read_wavfile(srcpath)
+        channels, samplerate = file.read_soundfile(srcpath)
         pbar.end(show_header=True)
 
         # read the channels of samples to get spectra
-        spectra_data = analyzer.read_channels(
+        spectra_data, peak = analyzer.read_channels(
             channels,
             samplerate=samplerate,
             speed=speed,
@@ -92,7 +92,8 @@ def main():
                 num_channels=len(spectra_data),
                 num_spectra=len(spectra_data[0]),
                 num_freqs=num_freqs,
-                speed=speed)
+                speed=speed,
+                peak=peak)
             )
         if json_mode:
             spt_file = file.gen_jsonfile(**gen_file_args)
