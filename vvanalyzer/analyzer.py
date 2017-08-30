@@ -55,6 +55,6 @@ def read_spectra(samples, chunk_size, fft_numbins):
 
 
 def read_spectrum(samples, fft_numbins):
-    fourier = np.fft.rfft(samples, fft_numbins)
+    fourier = np.fft.rfft(samples, n=fft_numbins, norm='ortho')
     spectrum = abs(fourier)
     return spectrum

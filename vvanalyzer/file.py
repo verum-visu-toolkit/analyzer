@@ -6,6 +6,7 @@ no description
 from cli import ProgressBarController
 import vvsptfile as sptfile
 from pydub import AudioSegment
+import numpy as np
 import json
 from re import match as re_match
 
@@ -18,11 +19,10 @@ def read_soundfile(filepath):
     segment = AudioSegment.from_file(filepath)
     segment.remove_dc_offset()
 
-    data = segment.get_array_of_samples()
+    data = np.asfarray(segment.get_array_of_samples()) / segment.max
     samplerate = segment.frame_rate
 
-    stereomode = (type(data[0]).__name__ == 'ndarray')
-    if stereomode:
+    if segment.channels == 2:
         left, right = data[::2], data[1::2]
         channels = [tuple(left), tuple(right)]
     else:
